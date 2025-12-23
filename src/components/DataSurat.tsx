@@ -26,7 +26,7 @@ import {
   DialogFooter,
 } from './ui/dialog';
 import { 
-  Search, Filter, Download, Trash2, Eye, Edit, FileText, Upload, X,
+  Search, Filter, Download, Trash2, Eye, Edit, FileText, Upload,
   Calendar, Building, Tag, User, FileUp, CheckCircle2, Lock, Info,
   ChevronLeft, ChevronRight
 } from 'lucide-react';
