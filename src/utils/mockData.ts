@@ -23,40 +23,42 @@ const STORAGE_KEYS = {
 // ===== DEFAULT DATA =====
 const defaultUsers: User[] = [
   {
-    id: "1",
+    id: 1,
     name: "Super Admin",
     email: "superadmin@example.com",
-    password: "admin123",
+    //password: "admin123",
     role: "super_admin", // super admin bisa lihat semua
-    createdAt: new Date().toISOString(),
+    created_at: new Date().toISOString(),
   },
   {
-    id: "2",
+    id: 2,
     name: "Admin PT EZRA",
     email: "admin@example.com",
-    password: "admin123",
+    // password: "admin123",
     role: "admin", // admin hanya bisa lihat perusahaannya sendiri
-    perusahaanId: "1", // ID dari PT. EZRA
-    createdAt: new Date().toISOString(),
+    perusahaan_id: 1, // ID dari PT. EZRA
+    created_at: new Date().toISOString(),
   },
 ];
 
 const defaultPerusahaan: Perusahaan[] = [
-  { id: "1", nama: "PT. EZRA", kode: "EP", status: "aktif", createdAt: new Date().toISOString() },
-  { id: "2", nama: "CV. ALFA OMEGA", kode: "AOS", status: "aktif", createdAt: new Date().toISOString() },
-  { id: "3", nama: "CV. STIGMA PRATAMA", kode: "SP", status: "aktif", createdAt: new Date().toISOString() },
+  { id: 1, nama: "PT. EZRA", kode: "EP", status: "aktif", created_at: new Date().toISOString() },
+  { id: 2, nama: "CV. ALFA OMEGA", kode: "AOS", status: "aktif", created_at: new Date().toISOString() },
+  { id: 3, nama: "CV. STIGMA PRATAMA", kode: "SP", status: "aktif", created_at: new Date().toISOString() },
 ];
 
 const defaultKategori: KategoriSurat[] = [
-  { id: "1", nama: "Penawaran", kode: "SP", createdAt: new Date().toISOString() },
-  { id: "2", nama: "Pencairan", kode: "PC", createdAt: new Date().toISOString() },
-  { id: "3", nama: "Lain-lain", kode: "LL", createdAt: new Date().toISOString() },
+  { id: 1, nama: "Penawaran", kode: "SP", created_at: new Date().toISOString() },
+  { id: 2, nama: "Pencairan", kode: "PC", created_at: new Date().toISOString() },
+  { id: 3, nama: "Lain-lain", kode: "LL", created_at: new Date().toISOString() },
 ];
 
 const defaultSettings: SystemSettings = {
-  appName: "Sistem Penomoran Surat",
-  darkMode: false,
-  nomorFormat: "{nomor}/{kode_surat}/{kode_perusahaan}/{bulan}/{tahun}",
+  app_name: "Sistem Penomoran Surat",
+  dark_mode: false,
+  nomor_format: "{nomor}/{kode_surat}/{kode_perusahaan}/{bulan}/{tahun}",
+  id: 1,
+  created_at: new Date().toISOString(),
 };
 
 // ===== HELPERS =====
@@ -108,8 +110,8 @@ export const saveLogs = (logs: ActivityLog[]): void => saveToStorage(STORAGE_KEY
 export const addLog = (userId: string, action: string, description: string): void => {
   const logs = getLogs();
   logs.push({
-    id: Date.now().toString(),
-    userId,
+    id: Date.now(),
+    user_id: parseInt(userId, 10), // Convert string to number
     action,
     description,
     timestamp: new Date().toISOString(),
